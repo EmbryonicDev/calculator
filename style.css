@@ -1,0 +1,44 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#container {
+  display: flex;
+  font-size: 36px;
+  width: 280px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: solid black;
+  gap: 2.5px;
+  padding: 5px;
+}
+
+#display {
+  display: flex;
+  width: 92.5%;
+  height: 80px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border: solid black;
+  margin: 5px;
+  padding: 2.5px;
+}
+
+.btn  {
+  width: 65px;
+  height: 65px;
+}
+
+#zero {
+  display: flex;
+  flex: 0.9;
+  justify-content: center;
+  align-items: center;
+}
