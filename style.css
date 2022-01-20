@@ -20,7 +20,7 @@ body {
 
 #container,
 #display,
-.btn {
+button {
   border-radius: 5px;
 }
 
@@ -39,14 +39,14 @@ body {
   background-color: rgb(201, 198, 198);
 }
 
-.btn  {
+button  {
   width: 75px;
   height: 65px;
   font-size: 25px;
   font-weight: 900;
 }
 
-#zero {
+#zeroBtn {
   grid-column: span 2;
   display: flex;
   justify-content: center;
