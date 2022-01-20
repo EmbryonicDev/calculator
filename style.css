@@ -5,30 +5,27 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 #container {
-  display: flex;
-  font-size: 36px;
-  width: 280px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border: solid black;
-  gap: 2.5px;
+  gap: 5px;
   padding: 5px;
 }
 
 #display {
+  grid-column: span 4;
+  grid-row: span 2;
+  border: solid black;
+  margin-top: 10px;
   display: flex;
-  width: 92.5%;
-  height: 80px;
   justify-content: flex-end;
   align-items: flex-end;
-  border: solid black;
-  margin: 5px;
-  padding: 2.5px;
+  font-size: 60px;
+  padding: 5px;
 }
 
 .btn  {
@@ -37,8 +34,9 @@ body {
 }
 
 #zero {
+  grid-column: span 2;
   display: flex;
-  flex: 0.9;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
