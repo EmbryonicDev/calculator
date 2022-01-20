@@ -1,3 +1,6 @@
+let displayValue =""
+
+// simple operators
 function add(a, b) {
   let answer = a + b;
   return answer;
@@ -35,21 +38,35 @@ function operate(operator, num1, num2) {
   }  
 }
 
-console.log(operate('+', 5, 5));
-console.log(operate("-", 20, 5));
-console.log(operate("*", 20, 5));
-console.log(operate("/", 20, 5));
+const buttons = document.querySelectorAll('button');
+const display = document.querySelector("#display");
 
-// ------------------------
-// console.log("add");
-// console.log(add(9,9));
-
-// console.log("subtract");
-// console.log(subtract(19,9));
-
-// console.log("multiply");
-// console.log(multiply(9,9));
-
-// console.log("devide");
-// console.log(devide(27, 3));
-// --------------------------
+function clickButton () {
+  for(let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', () => {
+      if(buttons[i].classList.contains('operand')) {
+        console.log("operand");
+        display.innerText = buttons[i].value;
+      } else if(buttons[i].classList.contains('clear')) {
+        console.log("clear");
+        display.innerText = buttons[i].value;
+      } else if(buttons[i].classList.contains('sign')) {
+        console.log("+/-");
+        display.innerText = buttons[i].value;
+      } else if(buttons[i].classList.contains('percent')) {
+        console.log("%");
+        display.innerText = buttons[i].value;
+      } else if(buttons[i].classList.contains('operator')) {
+        console.log("operator " + buttons[i].value);
+        display.innerText = buttons[i].value;
+      } else if(buttons[i].classList.contains('point')) {
+        console.log("decimal");
+        display.innerText = buttons[i].value;
+      } else if(buttons[i].classList.contains('equal')) {
+        console.log("equal");
+        display.innerText = buttons[i].value;
+      }
+    })
+  }
+}
+clickButton()
