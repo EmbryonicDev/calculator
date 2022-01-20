@@ -15,7 +15,7 @@ body {
   gap: 5px;
   padding: 7.5px;
   background-color: rgb(44, 40, 40);
-  box-shadow: 5px 10px 18px #252525;
+  box-shadow: 5px 10px 18px;
 }
 
 #container,
