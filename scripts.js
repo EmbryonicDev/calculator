@@ -45,26 +45,39 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
+
         console.log("operand");
-        display.innerText = buttons[i].value;
+        // display.innerText += buttons[i].value;
+        displayValue += buttons[i].value;
+        display.innerText = displayValue;
+        console.log(displayValue);
+
+
       } else if(buttons[i].classList.contains('clear')) {
         console.log("clear");
-        display.innerText = buttons[i].value;
+        displayValue = '';
+        display.innerText = displayValue;
       } else if(buttons[i].classList.contains('sign')) {
         console.log("+/-");
-        display.innerText = buttons[i].value;
+        displayValue = displayValue * -1;
+        display.innerText = displayValue;
       } else if(buttons[i].classList.contains('percent')) {
         console.log("%");
-        display.innerText = buttons[i].value;
+        // display.innerText = buttons[i].value;
       } else if(buttons[i].classList.contains('operator')) {
         console.log("operator " + buttons[i].value);
-        display.innerText = buttons[i].value;
+        // display.innerText = buttons[i].value;
       } else if(buttons[i].classList.contains('point')) {
+        
         console.log("decimal");
-        display.innerText = buttons[i].value;
+        displayValue += buttons[i].value;
+        display.innerText = displayValue;
+        if(!displayValue + 1) console.log("not a number");
+        console.log("too many decimals");
+
       } else if(buttons[i].classList.contains('equal')) {
         console.log("equal");
-        display.innerText = buttons[i].value;
+        // display.innerText = buttons[i].value;
       }
     })
   }
