@@ -1,4 +1,9 @@
-let displayValue =""
+const buttons = document.querySelectorAll('button');
+const display = document.querySelector("#display");
+let displayValue = '';
+let operator = '';
+let num1 = '';
+let storedOperator = '';
 
 // simple operators
 function add(a, b) {
@@ -38,48 +43,65 @@ function operate(operator, num1, num2) {
   }  
 }
 
-const buttons = document.querySelectorAll('button');
-const display = document.querySelector("#display");
-
 function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-
         console.log("operand");
-        // display.innerText += buttons[i].value;
         displayValue += buttons[i].value;
-        display.innerText = displayValue;
+        // display.innerText = displayValue;
+        compiler();
         console.log(displayValue);
-
-
       } else if(buttons[i].classList.contains('clear')) {
         console.log("clear");
-        displayValue = '';
-        display.innerText = displayValue;
+        clear()
       } else if(buttons[i].classList.contains('sign')) {
         console.log("+/-");
         displayValue = displayValue * -1;
         display.innerText = displayValue;
       } else if(buttons[i].classList.contains('percent')) {
         console.log("%");
-        // display.innerText = buttons[i].value;
+
       } else if(buttons[i].classList.contains('operator')) {
         console.log("operator " + buttons[i].value);
-        // display.innerText = buttons[i].value;
-      } else if(buttons[i].classList.contains('point')) {
+        operator = buttons[i].value;
+        compiler()
         
+      } else if(buttons[i].classList.contains('point')) {
         console.log("decimal");
         displayValue += buttons[i].value;
         display.innerText = displayValue;
         if(!displayValue + 1) console.log("not a number");
         console.log("too many decimals");
-
       } else if(buttons[i].classList.contains('equal')) {
         console.log("equal");
-        // display.innerText = buttons[i].value;
       }
     })
   }
 }
 clickButton()
+
+function compiler() {
+  if(!displayValue == '') display.innerText = displayValue
+  console.log({displayValue})
+
+  if(!operator == '')   {
+    num1 = displayValue;
+    storedOperator = operator;
+    operator = '';
+    displayValue = '';
+    console.log({num1});
+    console.log({operator});
+    console.log({storedOperator});
+    console.log({displayValue});
+  }  
+}
+
+function clear() {
+  display.innerText ='';
+  displayValue = '';
+  operator = '';
+  storedOperator = '';
+  num1 = '';
+}
+
