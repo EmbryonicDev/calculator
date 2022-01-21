@@ -24,12 +24,13 @@ function subtract(a, b) {
 
 function multiply(a, b) {
   answer = a * b;
-  displayValue = answer;  
+  displayValue = answer;
   display.innerText = answer;
 }
 
-function devide(a, b) {
+function divide(a, b) {
   answer = a / b;
+  displayValue = answer;
   display.innerText = answer;
 }
 
@@ -43,7 +44,7 @@ function operate(operator, num1, num2) {
       multiply(num1, num2);
 
   } else if(operator == "/") {
-      devide(num1, num2);
+      divide(num1, num2);
 
   }  
 }
