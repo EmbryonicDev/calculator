@@ -52,7 +52,6 @@ function clickButton () {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
         displayValue += buttons[i].value;
-        // display.innerText = displayValue;
         compiler();
       } else if(buttons[i].classList.contains('clear')) {
         clear()
@@ -80,13 +79,13 @@ clickButton()
 function compiler() {
   if(!displayValue == '') display.innerText = displayValue
   if(!operator == '')   {
-    num1 = parseInt(displayValue);
+    num1 = parseFloat(displayValue);
     storedOperator = operator;
     operator = '';
     displayValue = '';
   }
   if(!equal == '') {
-    num2 = parseInt(displayValue);
+    num2 = parseFloat(displayValue);
     displayValue = '';
     equal = '';
     operate(storedOperator, num1, num2);
@@ -112,5 +111,6 @@ function logAll() {
   console.log({operator});
   console.log({storedOperator});
   console.log({equal});
+  console.log('\n');
 }
 
