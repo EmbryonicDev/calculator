@@ -97,25 +97,27 @@ function compiler() {
     displayValue = '';
     equal = '';
     operate(storedOperator, num1, num2);
-
   }
 }
 
 function clear() {
-  display.innerText ='';
   displayValue = '';
+  display.innerText = '';
+  num1 = '';
+  num2 = '';
+  answer = '';
   operator = '';
   storedOperator = '';
-  num1 = '';
+  equal = '';
 }
 
 function logAll() {
   console.log({displayValue});
-  console.log({operator});
   console.log({num1});
   console.log({num2});
+  console.log({answer});
+  console.log({operator});
   console.log({storedOperator});
   console.log({equal});
-  console.log({answer});
 }
 
