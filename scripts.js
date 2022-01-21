@@ -35,19 +35,15 @@ function afterOperate() {
   logAll();
 }
 
-
 function operate(operator, num1, num2) {
   if(operator == "+") {
     add(num1, num2);
   } else if(operator == "-") {
       subtract(num1, num2);
-
   } else if(operator == "*") {
       multiply(num1, num2);
-
   } else if(operator == "/") {
       divide(num1, num2);
-
   }  
 }
 
@@ -72,7 +68,6 @@ function clickButton () {
         display.innerText = displayValue;
         if(!displayValue + 1) console.log("not a number");
         console.log("too many decimals");
-
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
@@ -84,14 +79,12 @@ clickButton()
 
 function compiler() {
   if(!displayValue == '') display.innerText = displayValue
-
   if(!operator == '')   {
     num1 = parseInt(displayValue);
     storedOperator = operator;
     operator = '';
     displayValue = '';
   }
-  
   if(!equal == '') {
     num2 = parseInt(displayValue);
     displayValue = '';
