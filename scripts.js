@@ -6,13 +6,14 @@ let num1 = '';
 let num2 = '';
 let storedOperator = '';
 let equal = '';
-let answer = 0;
+let answer = '';
 
 // simple operators
 function add(a, b) {
   answer = a + b;
+  displayValue = answer;
   display.innerText = answer;
-  console.log(answer);
+  console.log("the answer is: " + answer);
 }
 
 function subtract(a, b) {
@@ -32,17 +33,16 @@ function devide(a, b) {
 
 function operate(operator, num1, num2) {
   if(operator == "+") {
-    answer = add(num1, num2);
-    return answer;
+    add(num1, num2);
   } else if(operator == "-") {
-    answer = subtract(num1, num2);
-    return answer;
+      subtract(num1, num2);
+
   } else if(operator == "*") {
-    answer = multiply(num1, num2);
-    return answer;
+      multiply(num1, num2);
+
   } else if(operator == "/") {
-    answer = devide(num1, num2);
-    return answer;
+      devide(num1, num2);
+
   }  
 }
 
@@ -115,5 +115,15 @@ function clear() {
   operator = '';
   storedOperator = '';
   num1 = '';
+}
+
+function logAll() {
+  console.log({displayValue});
+  console.log({operator});
+  console.log({num1});
+  console.log({num2});
+  console.log({storedOperator});
+  console.log({equal});
+  console.log({answer});
 }
 
