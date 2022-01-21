@@ -11,28 +11,30 @@ let answer = '';
 // simple operators
 function add(a, b) {
   answer = a + b;
-  displayValue = answer;
-  display.innerText = answer;
-  console.log("the answer is: " + answer);
+  afterOperate();
 }
 
 function subtract(a, b) {
   answer = a - b;
-  displayValue = answer;
-  display.innerText = answer;
+  afterOperate();
 }
 
 function multiply(a, b) {
   answer = a * b;
-  displayValue = answer;
-  display.innerText = answer;
+  afterOperate();
 }
 
 function divide(a, b) {
   answer = a / b;
+  afterOperate();
+}
+
+function afterOperate() {
   displayValue = answer;
   display.innerText = answer;
+  logAll();
 }
+
 
 function operate(operator, num1, num2) {
   if(operator == "+") {
