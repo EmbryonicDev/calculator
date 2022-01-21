@@ -3,31 +3,34 @@ const display = document.querySelector("#display");
 let displayValue = '';
 let operator = '';
 let num1 = '';
+let num2 = '';
 let storedOperator = '';
+let equal = '';
+let answer = 0;
 
 // simple operators
 function add(a, b) {
-  let answer = a + b;
-  return answer;
+  answer = a + b;
+  display.innerText = answer;
+  console.log(answer);
 }
 
 function subtract(a, b) {
-  let answer = a - b;
-  return answer;
+  answer = a - b;
+  display.innerText = answer;
 }
 
 function multiply(a, b) {
-  let answer = a * b;
-  return answer;
+  answer = a * b;
+  display.innerText = answer;
 }
 
 function devide(a, b) {
-  let answer = a / b;
-  return answer;
+  answer = a / b;
+  display.innerText = answer;
 }
 
 function operate(operator, num1, num2) {
-  let answer =""
   if(operator == "+") {
     answer = add(num1, num2);
     return answer;
@@ -61,20 +64,21 @@ function clickButton () {
         display.innerText = displayValue;
       } else if(buttons[i].classList.contains('percent')) {
         console.log("%");
-
       } else if(buttons[i].classList.contains('operator')) {
         console.log("operator " + buttons[i].value);
         operator = buttons[i].value;
         compiler()
-        
       } else if(buttons[i].classList.contains('point')) {
         console.log("decimal");
         displayValue += buttons[i].value;
         display.innerText = displayValue;
         if(!displayValue + 1) console.log("not a number");
         console.log("too many decimals");
+
       } else if(buttons[i].classList.contains('equal')) {
         console.log("equal");
+        equal = buttons[i].value;
+        compiler();
       }
     })
   }
@@ -86,7 +90,7 @@ function compiler() {
   console.log({displayValue})
 
   if(!operator == '')   {
-    num1 = displayValue;
+    num1 = parseInt(displayValue);
     storedOperator = operator;
     operator = '';
     displayValue = '';
@@ -94,7 +98,15 @@ function compiler() {
     console.log({operator});
     console.log({storedOperator});
     console.log({displayValue});
-  }  
+  }
+  
+  if(!equal == '') {
+    console.log("equal captured " + equal)
+    num2 = parseInt(displayValue);
+    displayValue = '';
+    operate(storedOperator, num1, num2);
+    equal = '';
+  }
 }
 
 function clear() {
