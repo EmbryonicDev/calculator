@@ -24,6 +24,7 @@ function subtract(a, b) {
 
 function multiply(a, b) {
   answer = a * b;
+  displayValue = answer;  
   display.innerText = answer;
 }
 
