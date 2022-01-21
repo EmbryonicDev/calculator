@@ -95,8 +95,9 @@ function compiler() {
   if(!equal == '') {
     num2 = parseInt(displayValue);
     displayValue = '';
-    operate(storedOperator, num1, num2);
     equal = '';
+    operate(storedOperator, num1, num2);
+
   }
 }
 
