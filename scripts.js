@@ -18,6 +18,7 @@ function add(a, b) {
 
 function subtract(a, b) {
   answer = a - b;
+  displayValue = answer;
   display.innerText = answer;
 }
 
