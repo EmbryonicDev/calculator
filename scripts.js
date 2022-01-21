@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector("#display");
+const detailDisplay = document.querySelector("#detailDisplay");
 let displayValue = '';
 let operator = '';
 let num1 = '';
@@ -13,17 +14,14 @@ function add(a, b) {
   answer = a + b;
   afterOperate();
 }
-
 function subtract(a, b) {
   answer = a - b;
   afterOperate();
 }
-
 function multiply(a, b) {
   answer = a * b;
   afterOperate();
 }
-
 function divide(a, b) {
   answer = a / b;
   afterOperate();
@@ -77,23 +75,47 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  if(!displayValue == '') display.innerText = displayValue
-  if(!operator == '')   {
-    num1 = parseFloat(displayValue);
-    storedOperator = operator;
-    operator = '';
-    displayValue = '';
-  }
-  if(!equal == '') {
+  if(!storedOperator == '' && num1 != '' && displayValue != '') {
     num2 = parseFloat(displayValue);
+    displayValue = '';
+    detailDisplay.innerText += num2
+    display.innerText = num2;
+  }
+
+  if(!displayValue == '') display.innerText = displayValue
+
+  if(!operator == '')   {
+    if(num1 != '' && num2 != '')  {
+      operate(storedOperator, num1, num2);
+      num1 = answer;
+      num2 ='';
+      equal;
+      displayValue = '';
+      storedOperator = operator;
+      operator ='';
+      detailDisplay.innerText = `${answer}${storedOperator}${num2}`;
+    } else {
+      num1 = parseFloat(displayValue);
+      storedOperator = operator;
+      operator = '';
+      displayValue = '';
+      detailDisplay.innerText = `${num1}${storedOperator}`;
+    }
+  }
+  
+  if(!equal == '') {
+    detailDisplay.innerText += equal
     displayValue = '';
     equal = '';
     operate(storedOperator, num1, num2);
+    num2 = '';
+    num1 ='';
   }
 }
 
 function clear() {
   displayValue = '';
+  detailDisplay.innerText = '';
   display.innerText = '';
   num1 = '';
   num2 = '';
@@ -113,4 +135,3 @@ function logAll() {
   console.log({equal});
   console.log('\n');
 }
-
