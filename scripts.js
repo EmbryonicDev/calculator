@@ -28,14 +28,14 @@ function divide(a, b) {
 
 function afterOperate() {
   tempValue = answer;
+  // num1 = '',
+  // display.innerText = answer;
   num1 = '';
   if(answer % 1 != 0) {
     display.innerText = answer.toFixed(3);
   } else {
     display.innerText = answer;
   }
-  
-  logAll();
 }
 
 function operate(operator, num1, tempValue) {
@@ -54,7 +54,7 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        tempValue += buttons[i].value;
+        (tempValue && answer != '') ? tempValue = buttons[i].value : tempValue += buttons[i].value;
         compiler();
       } else if(buttons[i].classList.contains('clear')) {
         clear()
@@ -111,6 +111,7 @@ function compiler() {
     operate(storedOperator, num1, tempValue);
     disableDot();
   }
+  logAll()
 }
 
 function disableDot() {
