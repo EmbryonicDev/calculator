@@ -4,7 +4,6 @@ const detailDisplay = document.querySelector("#detailDisplay");
 let tempValue = '';
 let operator = '';
 let num1 = '';
-let num2 = '';
 let storedOperator = '';
 let equal = '';
 let answer = '';
@@ -33,15 +32,15 @@ function afterOperate() {
   logAll();
 }
 
-function operate(operator, num1, num2) {
+function operate(operator, num1, tempValue) {
   if(operator == "+") {
-    add(num1, num2);
+    add(num1, tempValue);
   } else if(operator == "-") {
-      subtract(num1, num2);
+      subtract(num1, tempValue);
   } else if(operator == "*") {
-      multiply(num1, num2);
+      multiply(num1, tempValue);
   } else if(operator == "/") {
-      divide(num1, num2);
+      divide(num1, tempValue);
   }  
 }
 
@@ -75,25 +74,24 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  if(!storedOperator == '' && num1 != '' && tempValue != '') {
-    num2 = parseFloat(tempValue);
-    tempValue = '';
-    detailDisplay.innerText += num2
-    display.innerText = num2;
-  }
+  // if(!storedOperator == '' && num1 != '' && tempValue != '') {
+  //   num2 = parseFloat(tempValue);
+  //   tempValue = '';
+  //   detailDisplay.innerText += num2
+  //   display.innerText = num2;
+  // }
 
   if(!tempValue == '') display.innerText = tempValue
 
   if(!operator == '')   {
-    if(num1 != '' && num2 != '')  {
-      operate(storedOperator, num1, num2);
+    if(num1 != '' && tempValue != '')  {
+      operate(storedOperator, num1, tempValue);
       num1 = answer;
-      num2 ='';
       equal;
       tempValue = '';
       storedOperator = operator;
       operator ='';
-      detailDisplay.innerText = `${answer}${storedOperator}${num2}`;
+      detailDisplay.innerText = `${answer}${storedOperator}${tempValue}`;
     } else {
       num1 = parseFloat(tempValue);
       storedOperator = operator;
@@ -107,8 +105,7 @@ function compiler() {
     detailDisplay.innerText += equal
     tempValue = '';
     equal = '';
-    operate(storedOperator, num1, num2);
-    num2 = '';
+    operate(storedOperator, num1, tempValue);
     num1 ='';
   }
 }
@@ -118,7 +115,6 @@ function clear() {
   detailDisplay.innerText = '';
   display.innerText = '';
   num1 = '';
-  num2 = '';
   answer = '';
   operator = '';
   storedOperator = '';
@@ -128,7 +124,6 @@ function clear() {
 function logAll() {
   console.log({tempValue});
   console.log({num1});
-  console.log({num2});
   console.log({answer});
   console.log({operator});
   console.log({storedOperator});
