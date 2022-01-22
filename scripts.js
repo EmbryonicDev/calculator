@@ -76,9 +76,11 @@ clickButton()
 function compiler() {
   tempValue = parseFloat(tempValue);
 
-  if(!tempValue == '') display.innerText = tempValue;
-  disablePoint();
-
+  if(!tempValue == '' || tempValue == 0) {
+    display.innerText = tempValue;
+    disablePoint()
+  }
+  
   if(!operator == '')   {
     if(num1 != '' && tempValue != '')  {
       operate(storedOperator, num1, tempValue);
@@ -108,11 +110,9 @@ function compiler() {
 function disablePoint() {
   if(!display.innerText.includes('.')) {
     pointBtn.disabled = false;
-    console.log('it works!');
   } else {
       pointBtn.disabled = true;
   }
-  console.log(pointBtn.disabled);
 }
 
 function clear() {
