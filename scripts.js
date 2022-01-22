@@ -63,7 +63,7 @@ function clickButton () {
       } else if(buttons[i].classList.contains('point')) {
         tempValue += buttons[i].value;
         display.innerText = tempValue;
-        disablePoint();
+        disableDot();
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
@@ -78,7 +78,7 @@ function compiler() {
 
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
-    disablePoint()
+    disableDot()
   }
   
   if(!operator == '')   {
@@ -103,11 +103,11 @@ function compiler() {
     detailDisplay.innerText += equal
     equal = '';
     operate(storedOperator, num1, tempValue);
-    disablePoint();
+    disableDot();
   }
 }
 
-function disablePoint() {
+function disableDot() {
   if(!display.innerText.includes('.')) {
     pointBtn.disabled = false;
   } else {
@@ -124,7 +124,7 @@ function clear() {
   operator = '';
   storedOperator = '';
   equal = '';
-  disablePoint()
+  disableDot()
 }
 
 function logAll() {
