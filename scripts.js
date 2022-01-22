@@ -75,12 +75,6 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  // if(!storedOperator == '' && num1 != '' && tempValue != '') {
-  //   num2 = parseFloat(tempValue);
-  //   tempValue = '';
-  //   detailDisplay.innerText += num2
-  //   display.innerText = num2;
-  // }
   tempValue = parseFloat(tempValue);
 
   if(!tempValue == '') display.innerText = tempValue;
