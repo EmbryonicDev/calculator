@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector("#display");
 const detailDisplay = document.querySelector("#detailDisplay");
+const pointBtn = document.querySelector('#pointBtn');
 let displayValue = '';
 let operator = '';
 let num1 = '';
@@ -63,8 +64,6 @@ function clickButton () {
       } else if(buttons[i].classList.contains('point')) {
         displayValue += buttons[i].value;
         display.innerText = displayValue;
-        if(!displayValue + 1) console.log("not a number");
-        console.log("too many decimals");
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
@@ -91,6 +90,7 @@ function compiler() {
       num2 ='';
       equal;
       displayValue = '';
+      pointBtn.enable
       storedOperator = operator;
       operator ='';
       detailDisplay.innerText = `${answer}${storedOperator}${num2}`;
@@ -111,6 +111,7 @@ function compiler() {
     num2 = '';
     num1 ='';
   }
+  disablePoint();
 }
 
 function clear() {
@@ -123,6 +124,18 @@ function clear() {
   operator = '';
   storedOperator = '';
   equal = '';
+  disablePoint();
+}
+
+function disablePoint() {
+  // displayValue.includes('.') ? pointBtn.enabled = false : pointBtn.enabled = true;
+  if(!display.innerText.includes('.')) {
+    pointBtn.disabled = false;
+    console.log('it works!');
+  } else {
+      pointBtn.disabled = true;
+  }
+  console.log(pointBtn.disabled);
 }
 
 function logAll() {
