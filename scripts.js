@@ -28,8 +28,13 @@ function divide(a, b) {
 
 function afterOperate() {
   tempValue = answer;
-  num1 = '',
-  display.innerText = answer;
+  num1 = '';
+  if(answer % 1 != 0) {
+    display.innerText = answer.toFixed(3);
+  } else {
+    display.innerText = answer;
+  }
+  
   logAll();
 }
 
