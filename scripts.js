@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector("#display");
 const detailDisplay = document.querySelector("#detailDisplay");
-let displayValue = '';
+let tempValue = '';
 let operator = '';
 let num1 = '';
 let num2 = '';
@@ -28,7 +28,7 @@ function divide(a, b) {
 }
 
 function afterOperate() {
-  displayValue = answer;
+  tempValue = answer;
   display.innerText = answer;
   logAll();
 }
@@ -49,21 +49,21 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        displayValue += buttons[i].value;
+        tempValue += buttons[i].value;
         compiler();
       } else if(buttons[i].classList.contains('clear')) {
         clear()
       } else if(buttons[i].classList.contains('sign')) {
-        displayValue = displayValue * -1;
-        display.innerText = displayValue;
+        tempValue = tempValue * -1;
+        display.innerText = tempValue;
       } else if(buttons[i].classList.contains('percent')) {
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
         compiler()
       } else if(buttons[i].classList.contains('point')) {
-        displayValue += buttons[i].value;
-        display.innerText = displayValue;
-        if(!displayValue + 1) console.log("not a number");
+        tempValue += buttons[i].value;
+        display.innerText = tempValue;
+        if(!tempValue + 1) console.log("not a number");
         console.log("too many decimals");
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
@@ -75,14 +75,14 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  if(!storedOperator == '' && num1 != '' && displayValue != '') {
-    num2 = parseFloat(displayValue);
-    displayValue = '';
+  if(!storedOperator == '' && num1 != '' && tempValue != '') {
+    num2 = parseFloat(tempValue);
+    tempValue = '';
     detailDisplay.innerText += num2
     display.innerText = num2;
   }
 
-  if(!displayValue == '') display.innerText = displayValue
+  if(!tempValue == '') display.innerText = tempValue
 
   if(!operator == '')   {
     if(num1 != '' && num2 != '')  {
@@ -90,22 +90,22 @@ function compiler() {
       num1 = answer;
       num2 ='';
       equal;
-      displayValue = '';
+      tempValue = '';
       storedOperator = operator;
       operator ='';
       detailDisplay.innerText = `${answer}${storedOperator}${num2}`;
     } else {
-      num1 = parseFloat(displayValue);
+      num1 = parseFloat(tempValue);
       storedOperator = operator;
       operator = '';
-      displayValue = '';
+      tempValue = '';
       detailDisplay.innerText = `${num1}${storedOperator}`;
     }
   }
   
   if(!equal == '') {
     detailDisplay.innerText += equal
-    displayValue = '';
+    tempValue = '';
     equal = '';
     operate(storedOperator, num1, num2);
     num2 = '';
@@ -114,7 +114,7 @@ function compiler() {
 }
 
 function clear() {
-  displayValue = '';
+  tempValue = '';
   detailDisplay.innerText = '';
   display.innerText = '';
   num1 = '';
@@ -126,7 +126,7 @@ function clear() {
 }
 
 function logAll() {
-  console.log({displayValue});
+  console.log({tempValue});
   console.log({num1});
   console.log({num2});
   console.log({answer});
