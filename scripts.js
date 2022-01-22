@@ -28,6 +28,7 @@ function divide(a, b) {
 
 function afterOperate() {
   tempValue = answer;
+  num1 = '',
   display.innerText = answer;
   logAll();
 }
@@ -80,8 +81,9 @@ function compiler() {
   //   detailDisplay.innerText += num2
   //   display.innerText = num2;
   // }
+  tempValue = parseFloat(tempValue);
 
-  if(!tempValue == '') display.innerText = tempValue
+  if(!tempValue == '') display.innerText = tempValue;
 
   if(!operator == '')   {
     if(num1 != '' && tempValue != '')  {
@@ -91,22 +93,21 @@ function compiler() {
       tempValue = '';
       storedOperator = operator;
       operator ='';
-      detailDisplay.innerText = `${answer}${storedOperator}${tempValue}`;
+      answer ='';
+      detailDisplay.innerText = `${num1}${storedOperator}${tempValue}`;
     } else {
-      num1 = parseFloat(tempValue);
+      num1 = tempValue;
       storedOperator = operator;
       operator = '';
       tempValue = '';
-      detailDisplay.innerText = `${num1}${storedOperator}`;
+      detailDisplay.innerText = `${num1}${storedOperator}${tempValue}`;
     }
   }
   
   if(!equal == '') {
     detailDisplay.innerText += equal
-    tempValue = '';
     equal = '';
     operate(storedOperator, num1, tempValue);
-    num1 ='';
   }
 }
 
