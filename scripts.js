@@ -63,8 +63,7 @@ function clickButton () {
       } else if(buttons[i].classList.contains('point')) {
         tempValue += buttons[i].value;
         display.innerText = tempValue;
-        if(!tempValue + 1) console.log("not a number");
-        console.log("too many decimals");
+        disablePoint();
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
@@ -78,6 +77,7 @@ function compiler() {
   tempValue = parseFloat(tempValue);
 
   if(!tempValue == '') display.innerText = tempValue;
+  disablePoint();
 
   if(!operator == '')   {
     if(num1 != '' && tempValue != '')  {
@@ -97,12 +97,22 @@ function compiler() {
       detailDisplay.innerText = `${num1}${storedOperator}${tempValue}`;
     }
   }
-  
   if(!equal == '') {
     detailDisplay.innerText += equal
     equal = '';
     operate(storedOperator, num1, tempValue);
+    disablePoint();
   }
+}
+
+function disablePoint() {
+  if(!display.innerText.includes('.')) {
+    pointBtn.disabled = false;
+    console.log('it works!');
+  } else {
+      pointBtn.disabled = true;
+  }
+  console.log(pointBtn.disabled);
 }
 
 function clear() {
@@ -114,6 +124,7 @@ function clear() {
   operator = '';
   storedOperator = '';
   equal = '';
+  disablePoint()
 }
 
 function logAll() {
