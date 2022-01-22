@@ -32,7 +32,7 @@ function afterOperate() {
   // display.innerText = answer;
   num1 = '';
   if(answer % 1 != 0) {
-    display.innerText = answer.toFixed(3);
+    display.innerText = answer.toFixed(2);
   } else {
     display.innerText = answer;
   }
@@ -54,7 +54,8 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        (tempValue && answer != '') ? tempValue = buttons[i].value : tempValue += buttons[i].value;
+        (tempValue && answer != '') ? tempValue = buttons[i].value : tempValue += buttons[i].value; // now number after = can only have 1 digit
+        if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
         compiler();
       } else if(buttons[i].classList.contains('clear')) {
         clear()
@@ -79,7 +80,6 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  // if(tempValue.length > 6) tempValue = tempValue.slice(6, -1); // working on keeping display value limited
   tempValue = parseFloat(tempValue);
   
   if(!tempValue == '' || tempValue == 0) {
