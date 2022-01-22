@@ -74,8 +74,9 @@ function clickButton () {
 clickButton()
 
 function compiler() {
+  // if(tempValue.length > 6) tempValue = tempValue.slice(6, -1); // working on keeping display value limited
   tempValue = parseFloat(tempValue);
-
+  
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
     disableDot()
