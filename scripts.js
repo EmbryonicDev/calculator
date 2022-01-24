@@ -13,34 +13,15 @@ window.addEventListener('keydown', function(e){
   key.click();
 });
 
-// simple operators
-function add(a, b) {
-  answer = a + b;
-  afterOperate();
-}
-function subtract(a, b) {
-  answer = a - b;
-  afterOperate();
-}
-function multiply(a, b) {
-  answer = a * b;
-  afterOperate();
-}
-function divide(a, b) {
-  answer = a / b;
-  afterOperate();
-}
-
 function afterOperate() {
-  tempValue = answer;
-  // num1 = '',
-  // display.innerText = answer;
   num1 = '';
   if(answer % 1 != 0) {
     display.innerText = answer.toFixed(2);
+    answer = parseFloat(display.innerText);
   } else {
     display.innerText = answer;
   }
+  tempValue = answer;
 }
 
 function operate(operator, num1, tempValue) {
@@ -53,6 +34,20 @@ function operate(operator, num1, tempValue) {
   } else if(operator == "/") {
       divide(num1, tempValue);
   }  
+    // simple operators
+  function add(a, b) {
+    answer = a + b;
+  }
+  function subtract(a, b) {
+    answer = a - b;
+  }
+  function multiply(a, b) {
+    answer = a * b;
+  }
+  function divide(a, b) {
+    answer = a / b;
+  }
+  afterOperate();
 }
 
 function clickButton () {
@@ -96,14 +91,16 @@ function compiler() {
   }
   
   if(!operator == '')   {
+    
     if(num1 != '' && tempValue != '')  {
       operate(storedOperator, num1, tempValue);
       num1 = answer;
-      equal;
+      // equal;
       tempValue = '';
       storedOperator = operator;
       operator ='';
       answer ='';
+      // if(num1 != '' && tempValue == '') num1 == num1;
       
     } else {
       num1 = tempValue;
@@ -112,6 +109,7 @@ function compiler() {
       tempValue = '';
     }
   }
+  
   if(!equal == '') {
     equal = '';
     operate(storedOperator, num1, tempValue);
