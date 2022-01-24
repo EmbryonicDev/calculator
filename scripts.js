@@ -70,9 +70,9 @@ function clickButton () {
         clear()
       } else if(buttons[i].classList.contains('sign')) {
         tempValue = tempValue * -1;
-        display.innerText = tempValue;
-      } else if(buttons[i].classList.contains('percent')) {
-        
+        compiler()
+      } else if(buttons[i].classList.contains('backspace')) {
+
       }
     })
   }
