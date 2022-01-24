@@ -103,17 +103,15 @@ function compiler() {
       storedOperator = operator;
       operator ='';
       answer ='';
-      detailDisplay.innerText = `${num1}${storedOperator}${tempValue}`;
+      
     } else {
       num1 = tempValue;
       storedOperator = operator;
       operator = '';
       tempValue = '';
-      detailDisplay.innerText = `${num1}${storedOperator}${tempValue}`;
     }
   }
   if(!equal == '') {
-    detailDisplay.innerText += equal
     equal = '';
     operate(storedOperator, num1, tempValue);
     disableDot();
