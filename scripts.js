@@ -24,6 +24,12 @@ function afterOperate() {
   tempValue = answer;
 }
 
+// simple operators
+const add = (a, b) => answer = a + b;
+const subtract = (a, b) => answer = a - b;
+const multiply = (a, b) => answer = a * b;
+const divide = (a, b) => answer = a / b;
+
 function operate(operator, num1, tempValue) {
   if(operator == "+") {
     add(num1, tempValue);
@@ -34,19 +40,6 @@ function operate(operator, num1, tempValue) {
   } else if(operator == "/") {
       divide(num1, tempValue);
   }  
-    // simple operators
-  function add(a, b) {
-    answer = a + b;
-  }
-  function subtract(a, b) {
-    answer = a - b;
-  }
-  function multiply(a, b) {
-    answer = a * b;
-  }
-  function divide(a, b) {
-    answer = a / b;
-  }
   afterOperate();
 }
 
