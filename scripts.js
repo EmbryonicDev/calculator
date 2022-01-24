@@ -8,6 +8,11 @@ let storedOperator = '';
 let equal = '';
 let answer = '';
 
+window.addEventListener('keydown', function(e){
+  const key = document.querySelector(`button[data-key='${e.keyCode}']`);
+  key.click();
+});
+
 // simple operators
 function add(a, b) {
   answer = a + b;
@@ -54,7 +59,9 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        (tempValue && answer != '') ? tempValue = buttons[i].value : tempValue += buttons[i].value; // now number after = can only have 1 digit
+        // if(tempValue != '' && answer != '') console.log("ping");
+        tempValue += buttons[i].value;
+        compiler();
         if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
         compiler();
       } else if(buttons[i].classList.contains('clear')) {
