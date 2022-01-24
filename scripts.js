@@ -91,17 +91,13 @@ function compiler() {
   }
   
   if(!operator == '')   {
-    
     if(num1 != '' && tempValue != '')  {
       operate(storedOperator, num1, tempValue);
       num1 = answer;
-      // equal;
       tempValue = '';
       storedOperator = operator;
       operator ='';
       answer ='';
-      // if(num1 != '' && tempValue == '') num1 == num1;
-      
     } else {
       num1 = tempValue;
       storedOperator = operator;
