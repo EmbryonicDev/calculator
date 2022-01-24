@@ -7,6 +7,7 @@ let num1 = '';
 let storedOperator = '';
 let equal = '';
 let answer = '';
+backspace = '';
 
 window.addEventListener('keydown', function(e){
   const key = document.querySelector(`button[data-key='${e.keyCode}']`);
@@ -55,7 +56,6 @@ function clickButton () {
         tempValue += buttons[i].value;
         if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
         compiler();
-        compiler();
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
         compiler()
@@ -71,8 +71,15 @@ function clickButton () {
       } else if(buttons[i].classList.contains('sign')) {
         tempValue = tempValue * -1;
         compiler()
-      } else if(buttons[i].classList.contains('backspace')) {
-
+      } else if(buttons[i].classList.contains('backSpace')) {
+        tempValue = tempValue.toString();
+        if(tempValue.length > 1) {
+          tempValue = tempValue.slice(0, -1);
+          compiler();
+        } else {
+          tempValue = 0;
+          compiler();
+        }
       }
     })
   }
