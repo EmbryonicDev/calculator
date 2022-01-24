@@ -14,6 +14,7 @@ window.addEventListener('keydown', function(e){
 });
 
 // simple operators
+
 const add = (a, b) => answer = a + b;
 const subtract = (a, b) => answer = a - b;
 const multiply = (a, b) => answer = a * b;
@@ -33,13 +34,16 @@ function operate(operator, num1, tempValue) {
 }
 
 function afterOperate() {
-  num1 = '';
-  if(answer % 1 != 0) {
+  if(answer > 999999999999) {
+    answer = '';
+    display.innerText = "Too Long!";
+  } else if(answer % 1 != 0) {
     display.innerText = answer.toFixed(2);
     answer = parseFloat(display.innerText);
   } else {
     display.innerText = answer;
   }
+  num1 = '';
   tempValue = answer;
 }
 
@@ -49,8 +53,8 @@ function clickButton () {
       if(buttons[i].classList.contains('operand')) {
         // if(tempValue != '' && answer != '') console.log("ping");
         tempValue += buttons[i].value;
-        compiler();
         if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
+        compiler();
         compiler();
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
