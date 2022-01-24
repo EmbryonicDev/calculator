@@ -13,17 +13,6 @@ window.addEventListener('keydown', function(e){
   key.click();
 });
 
-function afterOperate() {
-  num1 = '';
-  if(answer % 1 != 0) {
-    display.innerText = answer.toFixed(2);
-    answer = parseFloat(display.innerText);
-  } else {
-    display.innerText = answer;
-  }
-  tempValue = answer;
-}
-
 // simple operators
 const add = (a, b) => answer = a + b;
 const subtract = (a, b) => answer = a - b;
@@ -41,6 +30,17 @@ function operate(operator, num1, tempValue) {
       divide(num1, tempValue);
   }  
   afterOperate();
+}
+
+function afterOperate() {
+  num1 = '';
+  if(answer % 1 != 0) {
+    display.innerText = answer.toFixed(2);
+    answer = parseFloat(display.innerText);
+  } else {
+    display.innerText = answer;
+  }
+  tempValue = answer;
 }
 
 function clickButton () {
@@ -90,13 +90,13 @@ function compiler() {
       tempValue = '';
       storedOperator = operator;
       operator ='';
-      answer ='';
     } else {
       num1 = tempValue;
       storedOperator = operator;
       operator = '';
       tempValue = '';
     }
+    answer ='';
   }
   
   if(equal) {
