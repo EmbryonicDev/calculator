@@ -83,7 +83,7 @@ function compiler() {
     disableDot()
   }
   
-  if(!operator == '')   {
+  if(operator)   {
     if(num1 != '' && tempValue != '')  {
       operate(storedOperator, num1, tempValue);
       num1 = answer;
@@ -99,7 +99,7 @@ function compiler() {
     }
   }
   
-  if(!equal == '') {
+  if(equal) {
     equal = '';
     operate(storedOperator, num1, tempValue);
     disableDot();
