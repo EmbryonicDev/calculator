@@ -64,12 +64,6 @@ function clickButton () {
         compiler();
         if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
         compiler();
-      } else if(buttons[i].classList.contains('clear')) {
-        clear()
-      } else if(buttons[i].classList.contains('sign')) {
-        tempValue = tempValue * -1;
-        display.innerText = tempValue;
-      } else if(buttons[i].classList.contains('percent')) {
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
         compiler()
@@ -80,6 +74,13 @@ function clickButton () {
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
+      } else if(buttons[i].classList.contains('clear')) {
+        clear()
+      } else if(buttons[i].classList.contains('sign')) {
+        tempValue = tempValue * -1;
+        display.innerText = tempValue;
+      } else if(buttons[i].classList.contains('percent')) {
+        
       }
     })
   }
