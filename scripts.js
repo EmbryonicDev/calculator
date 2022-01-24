@@ -52,7 +52,9 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        // if(tempValue != '' && answer != '') console.log("ping");
+        if(answer != '') {
+          clear();
+        } 
         tempValue += buttons[i].value;
         if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
         compiler();
