@@ -52,9 +52,7 @@ function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        if(answer != '') {
-          clear();
-        } 
+        if(answer != '') clear();
         tempValue += buttons[i].value;
         if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
         compiler();
@@ -89,10 +87,11 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  tempValue = parseFloat(tempValue);
+  (tempValue == '') ? tempValue = 0 : tempValue = parseFloat(tempValue);;
   
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
+    // detailDisplay.innerText = tempValue;
     disableDot()
   }
   
@@ -113,9 +112,17 @@ function compiler() {
   }
   
   if(equal) {
+    if(storedOperator && num1 && tempValue != '') {
+      operate(storedOperator, num1, tempValue);
+      console.log('operated');
+      disableDot();
+    }
+    if(tempValue != '' || num1 != '' || storedOperator != '') {
+      tempValue = tempValue;
+      num1 = num1;
+      console.log('something');
+    } 
     equal = '';
-    operate(storedOperator, num1, tempValue);
-    disableDot();
   }
   logAll()
 }
