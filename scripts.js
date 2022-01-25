@@ -94,9 +94,7 @@ function compiler() {
   }
   
   if(operator)   {
-    console.log(operator);
     checkDivide()
-    answer = '';
     if(num1 == '' && tempValue == '') {
       operator = '';
     } else if(num1 != '' && tempValue == '') {
@@ -116,6 +114,7 @@ function compiler() {
       operator = '';
       tempValue = '';
     }
+    answer = '';
   }
   
   if(equal) {
