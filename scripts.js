@@ -55,7 +55,7 @@ function clickButton () {
       if(buttons[i].classList.contains('operand')) {
         if(answer != '') clear();
         tempValue += buttons[i].value;
-        if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
+        if(tempValue.length > 10) tempValue = tempValue.substring(0 , 10);
         compiler();
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
