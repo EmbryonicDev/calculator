@@ -55,7 +55,7 @@ button  {
   font-weight: 900;
 }
 
-button:active{
+button:focus{
   background-color:black;
   color: white;
 }
@@ -68,7 +68,6 @@ button:hover  {
 .operator, 
 .equal {
   background-color: rgb(140, 219, 138);
-  /* color: white; */
 }
 
 .clear {
