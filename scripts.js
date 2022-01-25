@@ -8,7 +8,7 @@ let equal = '';
 let answer = '';
 backspace = '';
 
-window.addEventListener('keydown', function(e){
+window.addEventListener('keydown', function(e) {
   const key = document.querySelector(`button[data-key='${e.keyCode}']`);
   key.click();
 });
