@@ -94,6 +94,7 @@ function compiler() {
   }
   
   if(operator)   {
+    console.log(operator);
     checkDivide()
     answer = '';
     if(num1 == '' && tempValue == '') {
@@ -142,7 +143,7 @@ function disableDot() {
 }
 
 function checkDivide() {
-  if(storedOperator == '/' && tempValue == 0) {
+  if(storedOperator == '/' && tempValue === 0) {
     clear();
     display.innerText = 'Funny Bunny!'
   }
