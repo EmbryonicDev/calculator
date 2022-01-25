@@ -11,13 +11,10 @@ body {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  border: solid black;
   gap: 5px;
   padding: 7.5px;
-  /* padding-top: 35px; */
   background-color: rgb(44, 40, 40);
   box-shadow: 5px 10px 18px;
-  font-style: italic;
 }
 
 span {
@@ -28,7 +25,8 @@ span {
   color: rgb(69, 238, 54);
   font-size: 24px;
   text-align: center;
-  text-shadow: 1px 1px #FF0000
+  text-shadow: 1px 1px #FF0000;
+  font-style: italic;
 }
 
 #container,
@@ -39,7 +37,6 @@ button {
 
 #display {
   grid-column: span 4;
-  /* grid-row: span 2; */
   border: solid black;
   display: flex;
   justify-content: flex-end;
@@ -56,6 +53,16 @@ button  {
   height: 65px;
   font-size: 25px;
   font-weight: 900;
+}
+
+button:active{
+  background-color:black;
+  color: white;
+}
+
+button:hover  {
+  box-shadow: 2px 4px 16px #eaf54e;
+  transform: scale(1.1);
 }
 
 .operator, 
