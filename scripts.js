@@ -1,47 +1,23 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector("#display");
-const detailDisplay = document.querySelector("#detailDisplay");
 let tempValue = '';
 let operator = '';
 let num1 = '';
 let storedOperator = '';
 let equal = '';
 let answer = '';
+backspace = '';
 
-window.addEventListener('keydown', function(e){
+window.addEventListener('keydown', function(e) {
   const key = document.querySelector(`button[data-key='${e.keyCode}']`);
   key.click();
 });
 
 // simple operators
-function add(a, b) {
-  answer = a + b;
-  afterOperate();
-}
-function subtract(a, b) {
-  answer = a - b;
-  afterOperate();
-}
-function multiply(a, b) {
-  answer = a * b;
-  afterOperate();
-}
-function divide(a, b) {
-  answer = a / b;
-  afterOperate();
-}
-
-function afterOperate() {
-  tempValue = answer;
-  // num1 = '',
-  // display.innerText = answer;
-  num1 = '';
-  if(answer % 1 != 0) {
-    display.innerText = answer.toFixed(2);
-  } else {
-    display.innerText = answer;
-  }
-}
+const add = (a, b) => answer = a + b;
+const subtract = (a, b) => answer = a - b;
+const multiply = (a, b) => answer = a * b;
+const divide = (a, b) => answer = a / b;
 
 function operate(operator, num1, tempValue) {
   if(operator == "+") {
@@ -52,24 +28,33 @@ function operate(operator, num1, tempValue) {
       multiply(num1, tempValue);
   } else if(operator == "/") {
       divide(num1, tempValue);
-  }  
+  } 
+  afterOperate();
+}
+
+function afterOperate() {
+  if(answer > 999999999999) {
+    answer = '';
+    display.innerText = "Too Long!";
+  } else if(answer % 1 != 0) {
+    display.innerText = answer.toFixed(2);
+    answer = parseFloat(display.innerText);
+  } else {
+    display.innerText = answer;
+  }
+  num1 = '';
+  tempValue = answer;
+  storedOperator = '';
 }
 
 function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        // if(tempValue != '' && answer != '') console.log("ping");
+        if(answer != '') clear();
         tempValue += buttons[i].value;
+        if(tempValue.length > 10) tempValue = tempValue.substring(0 , 10);
         compiler();
-        if(tempValue.length > 9) tempValue = tempValue.substring(0 , 9);
-        compiler();
-      } else if(buttons[i].classList.contains('clear')) {
-        clear()
-      } else if(buttons[i].classList.contains('sign')) {
-        tempValue = tempValue * -1;
-        display.innerText = tempValue;
-      } else if(buttons[i].classList.contains('percent')) {
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
         compiler()
@@ -80,6 +65,20 @@ function clickButton () {
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
+      } else if(buttons[i].classList.contains('clear')) {
+        clear()
+      } else if(buttons[i].classList.contains('sign')) {
+        tempValue = tempValue * -1;
+        compiler()
+      } else if(buttons[i].classList.contains('backSpace')) {
+        tempValue = tempValue.toString();
+        if(tempValue.length > 1) {
+          tempValue = tempValue.slice(0, -1);
+          compiler();
+        } else {
+          tempValue = 0;
+          compiler();
+        }
       }
     })
   }
@@ -87,34 +86,49 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  tempValue = parseFloat(tempValue);
+  (tempValue == '') ? tempValue == '' : tempValue = parseFloat(tempValue);;
   
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
     disableDot()
   }
   
-  if(!operator == '')   {
-    if(num1 != '' && tempValue != '')  {
+  if(operator)   {
+    checkDivide()
+    if(num1 == '' && tempValue == '') {
+      operator = '';
+    } else if(num1 != '' && tempValue == '') {
+      display.innerText = num1;
+      storedOperator = operator;
+      operator = '';
+    } else if(num1 != '' && tempValue != '')  {
+      display.innerText = tempValue;
       operate(storedOperator, num1, tempValue);
       num1 = answer;
-      equal;
       tempValue = '';
       storedOperator = operator;
       operator ='';
-      answer ='';
-      
-    } else {
+    } else if(tempValue !='' && num1 == '') {
       num1 = tempValue;
       storedOperator = operator;
       operator = '';
       tempValue = '';
     }
+    answer = '';
   }
-  if(!equal == '') {
+  
+  if(equal) {
+    checkDivide()
+    if(num1 != '' && tempValue == '') {
+      display.innerText = num1;
+    } else if(storedOperator && num1 && tempValue != '') {
+      operate(storedOperator, num1, tempValue);
+      disableDot();
+    } else if(tempValue != '' || num1 != '' || storedOperator != '') {
+      tempValue = tempValue;
+      num1 = num1;
+    } 
     equal = '';
-    operate(storedOperator, num1, tempValue);
-    disableDot();
   }
   logAll()
 }
@@ -127,9 +141,15 @@ function disableDot() {
   }
 }
 
+function checkDivide() {
+  if(storedOperator == '/' && tempValue === 0) {
+    clear();
+    display.innerText = 'Funny Bunny!'
+  }
+}
+
 function clear() {
   tempValue = '';
-  detailDisplay.innerText = '';
   display.innerText = '';
   num1 = '';
   answer = '';
