@@ -96,13 +96,20 @@ function compiler() {
   }
   
   if(operator)   {
-    if(num1 != '' && tempValue != '')  {
+    if(num1 == '' && tempValue == '') {
+      operator = '';
+    } else if(num1 != '' && tempValue == '') {
+      display.innerText = num1;
+      storedOperator = operator;
+      operator = '';
+    } else if(num1 != '' && tempValue != '')  {
+      display.innerText = tempValue;
       operate(storedOperator, num1, tempValue);
       num1 = answer;
       tempValue = '';
       storedOperator = operator;
       operator ='';
-    } else {
+    } else if(tempValue !='' && num1 == '') {
       num1 = tempValue;
       storedOperator = operator;
       operator = '';
@@ -112,12 +119,13 @@ function compiler() {
   }
   
   if(equal) {
-    if(storedOperator && num1 && tempValue != '') {
+    if(num1 != '' && tempValue == '') {
+      display.innerText = num1;
+    } else if(storedOperator && num1 && tempValue != '') {
       operate(storedOperator, num1, tempValue);
       console.log('operated');
       disableDot();
-    }
-    if(tempValue != '' || num1 != '' || storedOperator != '') {
+    } else if(tempValue != '' || num1 != '' || storedOperator != '') {
       tempValue = tempValue;
       num1 = num1;
     } 
