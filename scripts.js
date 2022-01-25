@@ -46,6 +46,7 @@ function afterOperate() {
   }
   num1 = '';
   tempValue = answer;
+  storedOperator = '';
 }
 
 function clickButton () {
@@ -87,11 +88,10 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  (tempValue == '') ? tempValue = 0 : tempValue = parseFloat(tempValue);;
+  (tempValue == '') ? tempValue == '' : tempValue = parseFloat(tempValue);;
   
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
-    // detailDisplay.innerText = tempValue;
     disableDot()
   }
   
@@ -120,7 +120,6 @@ function compiler() {
     if(tempValue != '' || num1 != '' || storedOperator != '') {
       tempValue = tempValue;
       num1 = num1;
-      console.log('something');
     } 
     equal = '';
   }
