@@ -15,7 +15,6 @@ window.addEventListener('keydown', function(e){
 });
 
 // simple operators
-
 const add = (a, b) => answer = a + b;
 const subtract = (a, b) => answer = a - b;
 const multiply = (a, b) => answer = a * b;
@@ -30,7 +29,7 @@ function operate(operator, num1, tempValue) {
       multiply(num1, tempValue);
   } else if(operator == "/") {
       divide(num1, tempValue);
-  }  
+  } 
   afterOperate();
 }
 
@@ -96,6 +95,8 @@ function compiler() {
   }
   
   if(operator)   {
+    checkDivide()
+    answer = '';
     if(num1 == '' && tempValue == '') {
       operator = '';
     } else if(num1 != '' && tempValue == '') {
@@ -115,15 +116,14 @@ function compiler() {
       operator = '';
       tempValue = '';
     }
-    answer ='';
   }
   
   if(equal) {
+    checkDivide()
     if(num1 != '' && tempValue == '') {
       display.innerText = num1;
     } else if(storedOperator && num1 && tempValue != '') {
       operate(storedOperator, num1, tempValue);
-      console.log('operated');
       disableDot();
     } else if(tempValue != '' || num1 != '' || storedOperator != '') {
       tempValue = tempValue;
@@ -139,6 +139,13 @@ function disableDot() {
     pointBtn.disabled = false;
   } else {
       pointBtn.disabled = true;
+  }
+}
+
+function checkDivide() {
+  if(storedOperator == '/' && tempValue == 0) {
+    clear();
+    display.innerText = 'Funny Bunny!'
   }
 }
 
