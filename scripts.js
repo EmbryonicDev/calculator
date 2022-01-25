@@ -70,7 +70,7 @@ function clickButton () {
       } else if(buttons[i].classList.contains('sign')) {
         tempValue = tempValue * -1;
         compiler()
-      } else if(buttons[i].classList.contains('backSpace')) {
+      } else if(buttons[i].classList.contains('backspace')) {
         tempValue = tempValue.toString();
         if(tempValue.length > 1) {
           tempValue = tempValue.slice(0, -1);
