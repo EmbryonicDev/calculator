@@ -1,6 +1,5 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector("#display");
-const detailDisplay = document.querySelector("#detailDisplay");
 let tempValue = '';
 let operator = '';
 let num1 = '';
@@ -151,7 +150,6 @@ function checkDivide() {
 
 function clear() {
   tempValue = '';
-  detailDisplay.innerText = '';
   display.innerText = '';
   num1 = '';
   answer = '';
