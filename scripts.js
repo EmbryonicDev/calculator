@@ -1,72 +1,84 @@
 const buttons = document.querySelectorAll('button');
 const display = document.querySelector("#display");
-const detailDisplay = document.querySelector("#detailDisplay");
-const pointBtn = document.querySelector('#pointBtn');
-let displayValue = '';
+let tempValue = '';
 let operator = '';
 let num1 = '';
-let num2 = '';
 let storedOperator = '';
 let equal = '';
 let answer = '';
+backspace = '';
+
+window.addEventListener('keydown', function(e) {
+  const key = document.querySelector(`button[data-key='${e.keyCode}']`);
+  key.click();
+});
 
 // simple operators
-function add(a, b) {
-  answer = a + b;
-  afterOperate();
-}
-function subtract(a, b) {
-  answer = a - b;
-  afterOperate();
-}
-function multiply(a, b) {
-  answer = a * b;
-  afterOperate();
-}
-function divide(a, b) {
-  answer = a / b;
+const add = (a, b) => answer = a + b;
+const subtract = (a, b) => answer = a - b;
+const multiply = (a, b) => answer = a * b;
+const divide = (a, b) => answer = a / b;
+
+function operate(operator, num1, tempValue) {
+  if(operator == "+") {
+    add(num1, tempValue);
+  } else if(operator == "-") {
+      subtract(num1, tempValue);
+  } else if(operator == "*") {
+      multiply(num1, tempValue);
+  } else if(operator == "/") {
+      divide(num1, tempValue);
+  } 
   afterOperate();
 }
 
 function afterOperate() {
-  displayValue = answer;
-  display.innerText = answer;
-  logAll();
-}
-
-function operate(operator, num1, num2) {
-  if(operator == "+") {
-    add(num1, num2);
-  } else if(operator == "-") {
-      subtract(num1, num2);
-  } else if(operator == "*") {
-      multiply(num1, num2);
-  } else if(operator == "/") {
-      divide(num1, num2);
-  }  
+  if(answer > 999999999999) {
+    answer = '';
+    display.innerText = "Too Long!";
+  } else if(answer % 1 != 0) {
+    display.innerText = answer.toFixed(2);
+    answer = parseFloat(display.innerText);
+  } else {
+    display.innerText = answer;
+  }
+  num1 = '';
+  tempValue = answer;
+  storedOperator = '';
 }
 
 function clickButton () {
   for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
       if(buttons[i].classList.contains('operand')) {
-        displayValue += buttons[i].value;
+        if(answer != '') clear();
+        tempValue += buttons[i].value;
+        if(tempValue.length > 10) tempValue = tempValue.substring(0 , 10);
         compiler();
-      } else if(buttons[i].classList.contains('clear')) {
-        clear()
-      } else if(buttons[i].classList.contains('sign')) {
-        displayValue = displayValue * -1;
-        display.innerText = displayValue;
-      } else if(buttons[i].classList.contains('percent')) {
       } else if(buttons[i].classList.contains('operator')) {
         operator = buttons[i].value;
         compiler()
       } else if(buttons[i].classList.contains('point')) {
-        displayValue += buttons[i].value;
-        display.innerText = displayValue;
+        tempValue += buttons[i].value;
+        display.innerText = tempValue;
+        disableDot();
       } else if(buttons[i].classList.contains('equal')) {
         equal = buttons[i].value;
         compiler();
+      } else if(buttons[i].classList.contains('clear')) {
+        clear()
+      } else if(buttons[i].classList.contains('sign')) {
+        tempValue = tempValue * -1;
+        compiler()
+      } else if(buttons[i].classList.contains('backSpace')) {
+        tempValue = tempValue.toString();
+        if(tempValue.length > 1) {
+          tempValue = tempValue.slice(0, -1);
+          compiler();
+        } else {
+          tempValue = 0;
+          compiler();
+        }
       }
     })
   }
@@ -74,74 +86,82 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  if(!storedOperator == '' && num1 != '' && displayValue != '') {
-    num2 = parseFloat(displayValue);
-    displayValue = '';
-    detailDisplay.innerText += num2
-    display.innerText = num2;
-  }
-
-  if(!displayValue == '') display.innerText = displayValue
-
-  if(!operator == '')   {
-    if(num1 != '' && num2 != '')  {
-      operate(storedOperator, num1, num2);
-      num1 = answer;
-      num2 ='';
-      equal;
-      displayValue = '';
-      pointBtn.enable
-      storedOperator = operator;
-      operator ='';
-      detailDisplay.innerText = `${answer}${storedOperator}${num2}`;
-    } else {
-      num1 = parseFloat(displayValue);
-      storedOperator = operator;
-      operator = '';
-      displayValue = '';
-      detailDisplay.innerText = `${num1}${storedOperator}`;
-    }
+  (tempValue == '') ? tempValue == '' : tempValue = parseFloat(tempValue);;
+  
+  if(!tempValue == '' || tempValue == 0) {
+    display.innerText = tempValue;
+    disableDot()
   }
   
-  if(!equal == '') {
-    detailDisplay.innerText += equal
-    displayValue = '';
-    equal = '';
-    operate(storedOperator, num1, num2);
-    num2 = '';
-    num1 ='';
+  if(operator)   {
+    checkDivide()
+    if(num1 == '' && tempValue == '') {
+      operator = '';
+    } else if(num1 != '' && tempValue == '') {
+      display.innerText = num1;
+      storedOperator = operator;
+      operator = '';
+    } else if(num1 != '' && tempValue != '')  {
+      display.innerText = tempValue;
+      operate(storedOperator, num1, tempValue);
+      num1 = answer;
+      tempValue = '';
+      storedOperator = operator;
+      operator ='';
+    } else if(tempValue !='' && num1 == '') {
+      num1 = tempValue;
+      storedOperator = operator;
+      operator = '';
+      tempValue = '';
+    }
+    answer = '';
   }
-  disablePoint();
+  
+  if(equal) {
+    checkDivide()
+    if(num1 != '' && tempValue == '') {
+      display.innerText = num1;
+    } else if(storedOperator && num1 && tempValue != '') {
+      operate(storedOperator, num1, tempValue);
+      disableDot();
+    } else if(tempValue != '' || num1 != '' || storedOperator != '') {
+      tempValue = tempValue;
+      num1 = num1;
+    } 
+    equal = '';
+  }
+  logAll()
+}
+
+function disableDot() {
+  if(!display.innerText.includes('.')) {
+    pointBtn.disabled = false;
+  } else {
+      pointBtn.disabled = true;
+  }
+}
+
+function checkDivide() {
+  if(storedOperator == '/' && tempValue === 0) {
+    clear();
+    display.innerText = 'Funny Bunny!'
+  }
 }
 
 function clear() {
-  displayValue = '';
-  detailDisplay.innerText = '';
+  tempValue = '';
   display.innerText = '';
   num1 = '';
-  num2 = '';
   answer = '';
   operator = '';
   storedOperator = '';
   equal = '';
-  disablePoint();
-}
-
-function disablePoint() {
-  // displayValue.includes('.') ? pointBtn.enabled = false : pointBtn.enabled = true;
-  if(!display.innerText.includes('.')) {
-    pointBtn.disabled = false;
-    console.log('it works!');
-  } else {
-      pointBtn.disabled = true;
-  }
-  console.log(pointBtn.disabled);
+  disableDot()
 }
 
 function logAll() {
-  console.log({displayValue});
+  console.log({tempValue});
   console.log({num1});
-  console.log({num2});
   console.log({answer});
   console.log({operator});
   console.log({storedOperator});
