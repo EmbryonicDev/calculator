@@ -33,15 +33,14 @@ function operate(operator, num1, tempValue) {
 }
 
 function afterOperate() {
-  if(answer > 999999999999) {
-    answer = '';
-    display.innerText = "Too Long!";
-  } else if(answer % 1 != 0) {
-    display.innerText = answer.toFixed(2);
-    answer = parseFloat(display.innerText);
+  if(answer > 9999999999) {
+    display.innerText = "Too Long";
   } else {
+    answer = answer.toString();
+    console.log(answer);
+    answer = answer.substring(0, 12)
     display.innerText = answer;
-  }
+  } 
   num1 = '';
   tempValue = answer;
   storedOperator = '';
@@ -86,7 +85,7 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  (tempValue == '') ? tempValue == '' : tempValue = parseFloat(tempValue);;
+  (tempValue == '') ? tempValue == '' : tempValue = parseFloat(tempValue);
   
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
