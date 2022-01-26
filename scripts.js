@@ -59,7 +59,7 @@ function clickButton () {
         operator = buttons[i].value;
         compiler()
       } else if(buttons[i].classList.contains('point')) {
-        tempValue += buttons[i].value;
+        (tempValue == '') ? tempValue = 0 + '.' : tempValue += buttons[i].value;
         display.innerText = tempValue;
         disableDot();
       } else if(buttons[i].classList.contains('equal')) {
@@ -94,7 +94,7 @@ function compiler() {
     }
 
   if(operator)   {
-    checkDivide()
+    checkDivide();
     if(num1 == '' && tempValue == '') {
       operator = '';
     } else if(num1 != '' && tempValue == '') {
@@ -123,18 +123,18 @@ function compiler() {
       display.innerText = num1;
     } else if(storedOperator && num1 && tempValue != '') {
       operate(storedOperator, num1, tempValue);
-      disableDot();
     } else if(tempValue != '' || num1 != '' || storedOperator != '') {
       tempValue = tempValue;
       num1 = num1;
     } 
     equal = '';
   }
+  disableDot();
   logAll()
 }
 
 function disableDot() {
-  if(!display.innerText.includes('.')) {
+  if(!tempValue.includes('.')) {
     pointBtn.disabled = false;
   } else {
       pointBtn.disabled = true;
