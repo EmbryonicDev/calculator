@@ -29,7 +29,7 @@ Max answer length = 12 characters
 
 The last operator clicked on will be used to execute the calculation, which means you can click on multiple operators without error. 
 
-Keyboard support for numbers (excl Numpad numerials).
+Keyboard support for numbers (excl Numpad numerals).
 
  Use 'c' to clear all
  
