@@ -75,7 +75,7 @@ function clickButton () {
           tempValue = tempValue.slice(0, -1);
           compiler();
         } else {
-          tempValue = 0;
+          tempValue = '';
           compiler();
         }
       }
