@@ -35,7 +35,7 @@ function operate(operator, num1, tempValue) {
 }
 
 function afterOperate() {
-  if(answer > 9999999999) {
+  if(answer > 999999999999) {
     display.innerText = "Too Long";
   } else {
     answer = answer.toString();
