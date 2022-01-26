@@ -90,7 +90,6 @@ function compiler() {
 
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
-    disableDot();
     }
 
   if(operator)   {
