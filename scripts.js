@@ -20,6 +20,8 @@ const multiply = (a, b) => answer = a * b;
 const divide = (a, b) => answer = a / b;
 
 function operate(operator, num1, tempValue) {
+  num1 = parseFloat(num1);
+  tempValue = parseFloat(tempValue);
   if(operator == "+") {
     add(num1, tempValue);
   } else if(operator == "-") {
@@ -37,7 +39,6 @@ function afterOperate() {
     display.innerText = "Too Long";
   } else {
     answer = answer.toString();
-    console.log(answer);
     answer = answer.substring(0, 12)
     display.innerText = answer;
   } 
@@ -85,13 +86,13 @@ function clickButton () {
 clickButton()
 
 function compiler() {
-  (tempValue == '') ? tempValue == '' : tempValue = parseFloat(tempValue);
-  
+  (tempValue == '') ? tempValue == '' : tempValue = tempValue;
+
   if(!tempValue == '' || tempValue == 0) {
     display.innerText = tempValue;
-    disableDot()
-  }
-  
+    disableDot();
+    }
+
   if(operator)   {
     checkDivide()
     if(num1 == '' && tempValue == '') {
