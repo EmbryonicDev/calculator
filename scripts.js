@@ -68,7 +68,7 @@ function clickButton () {
       } else if(buttons[i].classList.contains('clear')) {
         clear()
       } else if(buttons[i].classList.contains('sign')) {
-        (tempValue == '' || tempValue == 0) ? tempValue == '': tempValue = tempValue * -1;
+        (tempValue === '' || tempValue === 0) ? tempValue === '': tempValue = tempValue * -1;
         compiler()
       } else if(buttons[i].classList.contains('backspace')) {
         tempValue = tempValue.toString();
