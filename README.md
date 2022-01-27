@@ -4,7 +4,7 @@ Live Preview: https://embryonicdev.github.io/calculator/
 
 Error free calculator
   
-A message will be displayed if the answer is > 9999999999 
+A message will be displayed if the answer is > 999999999999 
       
 A message will be displayed when a number is divided by 0  
 
@@ -23,7 +23,7 @@ Functions:
   
   backspace
 
-Max input length = 10 characters
+Max input length = 12 characters
 
 Max answer length = 12 characters
 
